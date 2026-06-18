@@ -17,7 +17,8 @@ class Store:
     def add_product(self, product: Product) -> None:
         """
         Add a product to the store if it is not already inside product_list.
-        If the product already exists, add the quantity on top of the quantity of the existing product.
+        If the product already exists, add the quantity on top of
+        the quantity of the existing product.
         :param product:
         :return None:
         """
@@ -40,10 +41,10 @@ class Store:
         :return:
         """
         if isinstance(product, Product):
-            if product not in self.product_list:
-                raise Exception(f"'{product.name}' does not exist!")
-            else:
+            if product in self.product_list:
                 self.product_list.remove(product)
+            else:
+                raise Exception(f"'{product.name}' does not exist!")
         else:
             raise ValueError(f"'{product.name}' is not of Type Product")
 
@@ -64,19 +65,22 @@ class Store:
         """
         all_products = []
         for product in self.product_list:
-            if product.is_active(): all_products.append(product)
+            if product.is_active():
+                all_products.append(product)
         return all_products
 
     def order(self, shopping_list: list[tuple]) -> float:
         """
-        Buys the products inside the shopping list and returns the total price of the order.
+        Buys the products inside the shopping list and
+        returns the total price of the order.
         :param shopping_list: A list of tuples containing Product (Product class) and quantity (int).
         :return total_price: Float representing the total price of the order
         """
         total_price = 0.0
         try:
             for product, quantity in shopping_list:
-                if isinstance(product, Product) and int(quantity) > 0: total_price = total_price + product.buy(quantity)
+                if isinstance(product, Product) and int(quantity) > 0:
+                    total_price = total_price + product.buy(quantity)
         except TypeError as e:
             print("Type Error", e)
         except ValueError as v:

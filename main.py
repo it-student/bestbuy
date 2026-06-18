@@ -117,3 +117,4 @@ def start(store: Store) -> None:
 
 if __name__ == '__main__':
     start(best_buy)
+    
