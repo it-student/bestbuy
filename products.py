@@ -88,6 +88,6 @@ class Product:
             total += quantity * self.price
             self.set_quantity((self.get_quantity() - quantity))
         else:
-            raise ValueError("Product Quantity not sufficient!")
+            raise ValueError("Error while making order! Quantity larger than what exists")
 
         return total
