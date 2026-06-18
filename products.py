@@ -85,8 +85,8 @@ class Product:
         if quantity < 0:
             raise ValueError("Product Quantity cannot be negative")
         if quantity <= self.get_quantity():
-            self.set_quantity((self.get_quantity() - quantity))
             total += quantity * self.price
+            self.set_quantity((self.get_quantity() - quantity))
         else:
             raise ValueError("Product Quantity not sufficient!")
 

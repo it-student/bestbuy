@@ -75,8 +75,9 @@ class Store:
         """
         total_price = 0.0
         try:
+            print(shopping_list)
             for product, quantity in shopping_list:
-                if isinstance(product, Product) and quantity > 0: total_price += product.buy(quantity)
+                if isinstance(product, Product) and int(quantity) > 0: total_price = total_price + product.buy(quantity)
         except TypeError as e:
             print("Type Error", e)
         except ValueError as v:
