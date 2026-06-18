@@ -2,8 +2,6 @@
 This is the main file within this repository.
 In here everything else needed will be imported and consumed.
 """
-from concurrent.interpreters import list_all
-
 from store import Store
 from products import Product
 
