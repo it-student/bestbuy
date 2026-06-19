@@ -2,6 +2,7 @@
 This is the main file within this repository.
 In here everything else needed will be imported and consumed.
 """
+import sys
 from store import Store
 from products import Product
 
@@ -33,10 +34,10 @@ def create_order(store: Store) -> None:
         product_to_order = input("Which product # do you want? ")
         if product_to_order:
             try:
-                if int(product_to_order) in range(1, len(available_products)):
+                if int(product_to_order) in range(1, len(available_products)+1):
                     chosen_product = available_products[int(product_to_order)-1]
                 else:
-                    print("Please enter a valid number! ")
+                    print("Out of range! Please enter a valid number! ")
                     continue
             except ValueError as e:
                 print("Please enter a valid number!", e)
@@ -66,9 +67,9 @@ def list_all_products(store: Store) -> None:
     """
     list_of_all_products = store.get_all_products()
     print("------")
-    for i in range(len(list_of_all_products)):
-        print(f"{i + 1}. ", end="")
-        list_of_all_products[i].show()
+    for i, product in enumerate(list_of_all_products, start=1):
+        print(f"{i}. ", end="")
+        product.show()
     print("------")
 
 def show_total_quantity(store: Store) -> None:
@@ -90,7 +91,7 @@ def close_store(_) -> None:
     :param _:
     :return None:
     """
-    quit()
+    sys.exit()
 
 def start(store: Store) -> None:
     """
@@ -117,4 +118,3 @@ def start(store: Store) -> None:
 
 if __name__ == '__main__':
     start(best_buy)
-    
